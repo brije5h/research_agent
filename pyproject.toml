@@ -1,0 +1,26 @@
+[project]
+name = "research-agent"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "beautifulsoup4>=4.15.0",
+    "httpx>=0.28.1",
+    "langchain>=1.4.6",
+    "langchain-google-genai>=4.4.2",
+    "pydantic>=2.14.1",
+    "pytest>=9.1.1",
+    "python-dotenv>=1.2.4",
+    "tavily-python>=0.8.5",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
