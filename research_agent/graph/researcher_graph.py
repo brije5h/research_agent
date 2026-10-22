@@ -80,7 +80,6 @@ if __name__ == "__main__":
                     Research the following:
 
                     Benefits of agents made with langGraph and deep agents.
-
                     """
                 }
             ]
@@ -88,5 +87,12 @@ if __name__ == "__main__":
     )
 
     for message in result["messages"]:
-        print("\n--- MESSAGE ---")
-        print(message)
+        if message.type == "tool":
+
+            print("\n==============================")
+            print("TOOL MESSAGE")
+            print("==============================")
+    
+            print("content:", message.content)
+            print("artifact:", getattr(message, "artifact", None))
+            print("additional_kwargs:", message.additional_kwargs)

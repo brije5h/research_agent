@@ -2,7 +2,7 @@ from langchain_core.tools import tool
 import httpx
 from bs4 import BeautifulSoup
 
-from research_agent.contracts.source_read_contracts import (
+from research_agent.contracts.research_contracts import (
     SourceReadResponse,
 )
 
@@ -45,16 +45,19 @@ def _read_source(url: str) -> SourceReadResponse:
         url=url,
         title=title,
         content=content,
-        source_type="web",
+        source_type="other",
     )
 
 
 @tool
-def read_source(url: str) -> SourceReadResponse:
-    """Read the contents of a web source.
+def read_source(url: str) -> dict:
+    """Reads and extracts the full text content from a given web URL. 
 
-    Use this when a search result looks relevant and you need
-    to inspect the actual source before using its claims as evidence.
+    Use this tool after finding relevant URLs via search_web to get detailed evidence.
+    
+    Args:
+        url: The web URL to read.
     """
-    return _read_source(url)
+    return _read_source(url).model_dump()
+
     

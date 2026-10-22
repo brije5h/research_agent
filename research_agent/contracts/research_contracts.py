@@ -10,19 +10,34 @@ class ResearchRequest(BaseModel):
 class Source(BaseModel):
     title: str
     url: str
+    content: str
     source_type: Literal[
         "research_paper",
-        "documentaion",
+        "documentation",
         "blog",
         "forum",
         "other"
     ]
+
+
+class SourceReadResponse(BaseModel):
+    url: str
+    title: str
+    content: str
+    source_type: str = Field(default="other")
+
+class SourceReadError(BaseModel):
+    url: str
+    error: str = Field(default="failed to read source")
     
 class Finding(BaseModel):
     claim: str
     evidence: str
     source_urls: list[str]
     confidence_score: float=Field(ge=0.0,le=1.0)
+
+class Findings(BaseModel):
+    findings: list[Finding]
 
 class ResearchReport(BaseModel):
     title: str

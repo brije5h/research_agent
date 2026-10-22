@@ -62,10 +62,11 @@ def search_web(query: str) -> SearchResponse:
     Use this tool when you need external information, supporting evidence,
     recent developments, or sources for a research task.
     """
-    return web_search_client.search(
+    respone = web_search_client.search(
         query=query,
         max_results=5,
     )
+    return respone.model_dump()
 
 
 # if __name__ == "__main__":
